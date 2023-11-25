@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: goapi1
+  labels:
+    name: goapi1
+spec:
+  containers:
+  - name: goapi1
+    image: sagarchhabra02/goapi1
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: goapi-service
+  labels: 
+    name: goapi-service
+spec:
+  selector:
+    name: goapi1
+  ports:
+  - port: 8080
+    targetPort: 8080
